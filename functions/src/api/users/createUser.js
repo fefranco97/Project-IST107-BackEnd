@@ -1,6 +1,6 @@
 const { onRequest } = require('firebase-functions/v2/https')
 const logger = require('firebase-functions/logger')
-const { createUserWithEmailAndPassword } = require('../firestore/userCollection')
+const { createUserWithEmailAndPassword } = require('../../firestore/userCollection')
 
 const CreateUser = onRequest((request, response) => {
   if (request.method !== 'POST') {
