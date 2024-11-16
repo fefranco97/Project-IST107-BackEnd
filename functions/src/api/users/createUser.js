@@ -1,6 +1,32 @@
 const { onRequest } = require('firebase-functions/v2/https')
 const logger = require('firebase-functions/logger')
-const { createUserWithEmailAndPassword } = require('../../firestore/userCollection')
+const { db } = require('../../config/db')
+
+async function createUser(user) {
+  const userRef = db.collection('users').doc(user.id)
+  await userRef.set(user)
+  logger.info(`User ${user.id} created`)
+}
+
+async function createUserWithEmailAndPassword(name, email, password) {
+  try {
+    const userRecord = await admin.auth().createUser({
+      email: email,
+      password: password,
+    })
+    const user = {
+      id: crypto.randomUUID(),
+      email: userRecord.email,
+      name: name,
+      createdAt: new Date().toISOString(),
+    }
+    await createUser(user)
+    return user
+  } catch (error) {
+    logger.error('Error creating new user:', error)
+    throw error
+  }
+}
 
 const CreateUser = onRequest((request, response) => {
   if (request.method !== 'POST') {
