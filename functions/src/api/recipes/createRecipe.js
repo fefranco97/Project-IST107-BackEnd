@@ -2,13 +2,14 @@ const { onRequest } = require("firebase-functions/v2/https");
 const { db, admin } = require("../../config/db");
 
 const CreateRecipe = onRequest(async (req, res) => {
-  const { title, ingredients, instructions } = req.body;
+  const { title, ingredients, instructions, short, user } = req.body;
   try {
     const recipeRef = await db.collection("recipes").add({
       title,
       ingredients,
       instructions,
-      createdAt: Date.now(),
+      short,
+      user,
     });
     res.status(201).json({ id: recipeRef.id });
   } catch (error) {

@@ -1,9 +1,9 @@
 const { onRequest } = require("firebase-functions/v2/https");
 const { db } = require("../../config/db");
 
-const GetAllRecipes = onRequest(async (req, res) => {
+const GetIngredients = onRequest(async (req, res) => {
   try {
-    const snapshot = await db.collection("recipes").select("title").get();
+    const snapshot = await db.collection("ingredients").get();
 
     const recipes = snapshot.docs.map((doc) => ({
       ...doc.data(),
@@ -14,4 +14,4 @@ const GetAllRecipes = onRequest(async (req, res) => {
   }
 });
 
-module.exports = { GetAllRecipes };
+module.exports = { GetIngredients };

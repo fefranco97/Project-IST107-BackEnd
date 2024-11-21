@@ -8,7 +8,7 @@ const EditRecipe = onRequest(async (req, res) => {
     await db.collection("recipes").doc(id).update({
       title,
       instructions,
-      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      short,
     });
     res.status(200).send("Recipe updated successfully");
   } catch (error) {
