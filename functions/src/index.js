@@ -11,9 +11,8 @@ exports.getRecipeDetails = require('./api/recipes/getRecipeDetails').GetRecipeDe
 /* Users */
 exports.getUserRecipes = require('./api/users/getUserRecipes').GetUserRecipes
 exports.createUser = require('./api/users/createUser').CreateUser
-exports.getUsers = require('./api/users/getUser').GetAllUsers
 exports.user = require('./api/users/getUser').GetUserByEmail
-exports.googleUser = require('./api/users/getUser').GetUserByGoogle
+exports.google = require('./api/users/login').LoginWithGoogle
 
 /* Ingredients */
 exports.ingredients = require('./api/ingredients/getAllIngredients').GetAllIngredients
