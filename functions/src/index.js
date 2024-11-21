@@ -1,24 +1,18 @@
-
 const admin = require('firebase-admin')
 admin.initializeApp()
 
 /* Recipes */
-const { CreateRecipe } = require('./api/recipes/createRecipe')
-const { DeleteRecipe } = require('./api/recipes/deleteRecipe')
-const { EditRecipe } = require('./api/recipes/editRecipe')
-const { GetAllRecipes } = require('./api/recipes/getAllRecipes')
-const { GetRecipeDetails } = require('./api/recipes/getRecipeDetails')
+exports.createRecipe = require('./api/recipes/createRecipe').CreateRecipe
+exports.deleteRecipe = require('./api/recipes/deleteRecipe').DeleteRecipe
+exports.editRecipe = require('./api/recipes/editRecipe').EditRecipe
+exports.getAllRecipes = require('./api/recipes/getAllRecipes').GetAllRecipes
+exports.getRecipeDetails = require('./api/recipes/getRecipeDetails').GetRecipeDetails
 
 /* Users */
-const { GetUserRecipes } = require('./api/users/getUserRecipes')
-const { CreateUser } = require('./api/users/createUser')
-const { GetUsers } = require('./api/users/getUsers')
+exports.getUserRecipes = require('./api/users/getUserRecipes').GetUserRecipes
+exports.createUser = require('./api/users/createUser').CreateUser
+exports.user = require('./api/users/getUser').GetUserByEmail
+exports.google = require('./api/users/login').LoginWithGoogle
 
-exports.createRecipe = CreateRecipe
-exports.deleteRecipe = DeleteRecipe
-exports.editRecipe = EditRecipe
-exports.getAllRecipes = GetAllRecipes
-exports.getRecipeDetails = GetRecipeDetails
-exports.getUserRecipes = GetUserRecipes
-exports.createUser = CreateUser
-exports.getUsers = GetUsers
+/* Ingredients */
+exports.ingredients = require('./api/ingredients/getAllIngredients').GetAllIngredients
