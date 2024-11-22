@@ -9,6 +9,7 @@ const EditRecipe = onRequest(async (req, res) => {
       title,
       instructions,
       short,
+      img,
     });
     res.status(200).send("Recipe updated successfully");
   } catch (error) {
