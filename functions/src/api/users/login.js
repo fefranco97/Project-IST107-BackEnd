@@ -2,7 +2,7 @@ const { onRequest } = require("firebase-functions/v2/https");
 const { admin, db } = require("../../config/db");
 const corsHandler = require("../../config/cors");
 
-const LoginWithGoogle = onRequest(async (req, res) => {
+const LoginWithGoogle = onRequest((req, res) => {
   corsHandler(req, res, async () => {
     if (req.method !== "POST") {
       res.status(405).send("Method Not Allowed");
