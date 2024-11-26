@@ -1,5 +1,6 @@
 const { onRequest } = require("firebase-functions/v2/https");
 const { db } = require("../../config/db");
+const corsHandler = require("../../config/cors");
 
 const GetRecipeDetails = onRequest((req, res) => {
   corsHandler(req, res, async () => {
