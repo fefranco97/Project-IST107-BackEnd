@@ -12,9 +12,9 @@ const GetAllIngredients = onRequest((req, res) => {
       const ingredients = ingredientsSnapshot.docs.map((doc) => {
         return { id: doc.id, ...doc.data() };
       });
-      res.status(200).json(ingredients);
+      res.status(200).json({ status: "success", message: ingredients });
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(500).send({ status: "error", message: error.message });
     }
   });
 });
