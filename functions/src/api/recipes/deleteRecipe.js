@@ -8,9 +8,11 @@ const DeleteRecipe = onRequest((req, res) => {
     const { id } = req.query;
     try {
       await db.collection("recipes").doc(id).delete();
-      res.status(200).send("Recipe deleted successfully");
+      res
+        .status(200)
+        .send({ status: "success", data: "Recipe deleted successfully" });
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(500).send({ status: "error", message: error.message });
     }
   });
 });

@@ -14,9 +14,9 @@ const CreateRecipe = onRequest((req, res) => {
         user,
         img,
       });
-      res.status(201).json({ id: recipeRef.id });
+      res.status(201).json({ status: "success", data: recipeRef.id });
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(500).send({ status: "error", message: error.message });
     }
   });
 });

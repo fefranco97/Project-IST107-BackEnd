@@ -13,9 +13,11 @@ const EditRecipe = onRequest((req, res) => {
         short,
         img,
       });
-      res.status(200).send("Recipe updated successfully");
+      res
+        .status(200)
+        .send({ status: "success", data: "Recipe updated successfully" });
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(500).send({ status: "error", message: error.message });
     }
   });
 });
