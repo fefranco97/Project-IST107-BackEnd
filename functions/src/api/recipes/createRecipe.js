@@ -18,7 +18,7 @@ const CreateRecipe = onRequest((req, res) => {
     try {
       form.parse(req, async (err, fields, files) => {
         let uuid = UUID()
-        var downLoadPath = 'https://firebasestorage.googleapis.com/v0/b/fir-upload-8156e.appspot.com/o/'
+        var downLoadPath = 'https://firebasestorage.googleapis.com/v0/b/projectrecipesist107.firebasestorage.app/o/'
 
         const recipeImg = files.img
         let imageUrl
@@ -51,7 +51,7 @@ const CreateRecipe = onRequest((req, res) => {
         const recipeModel = {
           id: docID,
           title: fields.title,
-          ingredients: fields.ingredients,
+          ingredients: JSON.parse(fields.ingredients),
           instructions: fields.instructions,
           short: fields.short,
           user: fields.user,
