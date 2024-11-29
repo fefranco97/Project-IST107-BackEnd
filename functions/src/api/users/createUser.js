@@ -29,27 +29,29 @@ async function createUserWithEmailAndPassword(name, email, password) {
 }
 
 const CreateUser = onRequest((request, response) => {
-  if (request.method !== 'POST') {
-    logger.error('Method Not Allowed')
-    response.status(405).send('Method Not Allowed')
-    return
-  }
+  corsHandler(req, res, async () => {
+    if (request.method !== 'POST') {
+      logger.error('Method Not Allowed')
+      response.status(405).send('Method Not Allowed')
+      return
+    }
 
-  const { name, email, password } = request.body
+    const { name, email, password } = request.body
 
-  if (!email || !password) {
-    response.status(400).send('Email and password are required')
-    return
-  }
+    if (!email || !password) {
+      response.status(400).send('Email and password are required')
+      return
+    }
 
-  createUserWithEmailAndPassword(name, email, password)
-    .then((user) => {
-      response.status(201).json({ status: 'success', ...user })
-    })
-    .catch((error) => {
-      logger.error('Error creating user:', error)
-      response.status(500).send({ status: 'error', message: error.message })
-    })
+    createUserWithEmailAndPassword(name, email, password)
+      .then((user) => {
+        response.status(201).json({ status: 'success', ...user })
+      })
+      .catch((error) => {
+        logger.error('Error creating user:', error)
+        response.status(500).send({ status: 'error', message: error.message })
+      })
+  })
 })
 
 module.exports = { CreateUser }
