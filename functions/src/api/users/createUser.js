@@ -1,5 +1,6 @@
 const { onRequest } = require('firebase-functions/v2/https')
 const logger = require('firebase-functions/logger')
+const corsHandler = require('../../config/cors')
 const { admin, db } = require('../../config/db')
 
 async function createUser(user) {
