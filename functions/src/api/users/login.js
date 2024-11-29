@@ -1,7 +1,7 @@
 const { onRequest } = require('firebase-functions/v2/https')
 const { admin, db } = require('../../config/db')
 const corsHandler = require('../../config/cors')
-const { user } = require('../..')
+const crypto = require('crypto')
 
 const LoginWithGoogle = onRequest((req, res) => {
   corsHandler(req, res, async () => {
