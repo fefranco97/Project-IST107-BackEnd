@@ -2,6 +2,7 @@ const { onRequest } = require('firebase-functions/v2/https')
 const logger = require('firebase-functions/logger')
 const corsHandler = require('../../config/cors')
 const { admin, db } = require('../../config/db')
+const crypto = require('crypto')
 
 async function createUser(user) {
   const userRef = db.collection('users').doc(user.id)
@@ -30,7 +31,7 @@ async function createUserWithEmailAndPassword(name, email, password) {
 }
 
 const CreateUser = onRequest((request, response) => {
-  corsHandler(req, res, async () => {
+  corsHandler(request, response, async () => {
     if (request.method !== 'POST') {
       logger.error('Method Not Allowed')
       response.status(405).send('Method Not Allowed')
